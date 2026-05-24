@@ -1,6 +1,11 @@
 from mcp.server.fastmcp import FastMCP
+
 import os
 import random
+from fastapi import FastAPI
+
+app = FastAPI()
+
 
 mcp = FastMCP(
     "saad-test-mcp-server",
@@ -13,6 +18,11 @@ try:
     mcp.settings.transport_security.enable_dns_rebinding_protection = False
 except Exception:
     pass
+
+
+@app.get("/")
+def health():
+    return {"status": "ok"}
 
 @mcp.tool()
 def add(a: float, b: float) -> float:
