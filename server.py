@@ -1,6 +1,17 @@
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("saad-test-mcp-server")
+# mcp = FastMCP("saad-test-mcp-server")
+
+mcp = FastMCP(
+    "saad-test-mcp-server",
+    host="0.0.0.0",
+    port=3000,
+    streamable_http_path="/mcp",
+)
+
+# Disable DNS rebinding protection so Render's hostname is accepted.
+# Safe here because the server has no auth and is meant to be publicly reachable.
+mcp.settings.transport_security.enable_dns_rebinding_protection = False
 
 @mcp.tool()
 def add(a: float, b: float) -> str:
