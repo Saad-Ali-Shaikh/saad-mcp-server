@@ -5,7 +5,7 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP(
     "saad-test-mcp-server",
     host="0.0.0.0",
-    port=3000,
+   port=int(os.environ.get("PORT", 3000)),
     streamable_http_path="/mcp",
 )
 
@@ -60,5 +60,4 @@ def random_joke() -> str:
     return random.choice(jokes)
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(mcp.streamable_http_app(), host="0.0.0.0", port=3000)
+    mcp.run(transport="streamable-http")
