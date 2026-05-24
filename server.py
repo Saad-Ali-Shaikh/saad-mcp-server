@@ -1,11 +1,12 @@
 from mcp.server.fastmcp import FastMCP
+import os
 
 # mcp = FastMCP("saad-test-mcp-server")
 
 mcp = FastMCP(
     "saad-test-mcp-server",
     host="0.0.0.0",
-   port=int(os.environ.get("PORT", 3000)),
+    port=int(os.environ.get("PORT", 3000)),
     streamable_http_path="/mcp",
 )
 
