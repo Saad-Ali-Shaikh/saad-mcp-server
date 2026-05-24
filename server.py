@@ -8,6 +8,12 @@ mcp = FastMCP(
     port=int(os.environ.get("PORT", 3000)),
 )
 
+# Allow Render hostname
+try:
+    mcp.settings.transport_security.enable_dns_rebinding_protection = False
+except Exception:
+    pass
+
 @mcp.tool()
 def add(a: float, b: float) -> float:
     return a + b
